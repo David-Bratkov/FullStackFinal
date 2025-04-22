@@ -1,0 +1,13 @@
+How to start the project: 
+
+
+
+
+• Include screenshots of the working UI and token handling in developer tools
+• Document your component structure and routing
+• Explain how JWT is stored and used
+• Be sure your frontend only works when the backend is running
+
+How JWT is stored:
+
+How JWT is used:

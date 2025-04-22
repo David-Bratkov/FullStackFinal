@@ -13,6 +13,7 @@
 import React, { createContext, useEffect, useState } from "react";
 // Create a Context object for global authentication state.
 export const AuthContext = createContext(null);
+
 /**
 * Component: AuthProvider
 *
@@ -115,10 +116,11 @@ function AuthProvider({ children }) {
       logout,
       isAuthenticated: !!token // Converts truthy token into boolean true
    };
+
    return (
       // Provide the `value` object to all nested children
       <AuthContext.Provider value={value}>
-      {children}
+         {children}
       </AuthContext.Provider>
    );
 }

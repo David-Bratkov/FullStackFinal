@@ -11,23 +11,30 @@
 *
 3. <React.StrictMode> for highlighting potential problems in development
 */
+
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
+
 // Select the root DOM node from index.html (must match <div id="root">)
 const rootElement = document.getElementById("root");
+
 // Create a root rendering context (React 18+ API)
 const root = ReactDOM.createRoot(rootElement);
+
 // Render the application
 root.render(
   <React.StrictMode>
     {/* Enables route-based navigation without full page reload */}
     <BrowserRouter>
+    
       {/* Provides authentication context to the entire component tree */}
         <AuthProvider>
+
           {/* Main application component */}
           <App />
+
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
