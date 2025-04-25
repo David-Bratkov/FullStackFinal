@@ -6,7 +6,7 @@ import {
     updateEntry,
     deleteEntry,
 } from "../controllers/diaryController.js";
-import { authenticateJWT } from "../middleware/authMiddleware.js";
+import authenticateJWT from "../middleware/authMiddleware.js";
 
 
 const router = express.Router();

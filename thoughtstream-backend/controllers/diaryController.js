@@ -117,6 +117,12 @@ export const updateEntry = async (req, res) => {
          updateData.weather = await fetchWeather(location);
       }
 
+      const oldEntry = await DiaryEntry.findById(id);
+
+      if (oldEntry.user.toString() !== req.user._id.toString()) {
+         return res.status(403).json({ message: "Forbidden" });
+      }
+
       // Find the diary entry by ID and update it
       const updatedEntry = await DiaryEntry.findByIdAndUpdate(id, updateData, 
          { new: true });

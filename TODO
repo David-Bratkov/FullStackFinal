@@ -1,5 +1,0 @@
-Connect to the Backend with Axios
-• Backend is running on localhost:5000
-• Frontend Vite server running on localhost:5173
-• Test login, logout, post, and fetch entries
-• Verify that API requests are authorized and that entries appear only for the authenticated user
