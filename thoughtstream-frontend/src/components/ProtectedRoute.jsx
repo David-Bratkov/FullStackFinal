@@ -1,5 +1,5 @@
 // File: components/ProtectedRoute.jsx
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
@@ -13,9 +13,11 @@ import { AuthContext } from "../context/AuthContext";
 */
 export default function ProtectedRoute({ children }) {
    const { isAuthenticated } = useContext(AuthContext);
+   const navigate = useNavigate(); 
    if (!isAuthenticated) {
       // Not logged in; redirect to login page
-      return <Navigate to="/login" />;
+      navigate("/login");
+
    }
 
    // Logged in; allow access to the route
