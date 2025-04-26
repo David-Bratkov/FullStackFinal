@@ -28,12 +28,7 @@ const root = ReactDOM.createRoot(rootElement);
 // Render the application
 root.render(
   <React.StrictMode>
-    <GoogleOAuthProvider 
-    clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
-    onScriptLoadError={() => {
-      console.error("Google OAuth script failed to load.", import.meta.env.VITE_GOOGLE_CLIENT_ID);
-    }}
-    >
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
 
       {/* Enables route-based navigation without full page reload */}
       <BrowserRouter>

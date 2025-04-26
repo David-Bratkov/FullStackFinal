@@ -14,14 +14,14 @@ function DiaryList(){
    const {token} = useContext(AuthContext);
    useEffect(() => {
       async function fetchEntries(){
-         const res = await api.get("diary");
+         const res = await api.get("/api/diary");
          setEntires(res.data);
       }
       fetchEntries();
    }, []);
    return(
       <div>
-         {entries.map((entry) => (
+         {entries.map((entry) => ( //entries is undefined
             <DiaryEntryCard key={entry._id} {... entry} />
          ))}
       </div>
