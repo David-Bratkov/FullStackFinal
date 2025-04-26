@@ -43,6 +43,21 @@ api.interceptors.request.use((config) => {
    return config;
 });
 
+// Example: GET request to fetch diary entries
+export async function fetchEntries(token) {
+   try {
+      const res = await axios.get("/api/diary", {
+         headers: {
+            Authorization: `Bearer ${token}`
+         }
+      });
+      return res.data; // Array of entries
+   } catch (err) {
+      console.error("error fetching entries:", err);
+      throw err;
+   }
+}
+
 /**
 * Export the configured Axios instance
 *

@@ -29,4 +29,4 @@ function Dashboard(){
    );
 }
 
-return default Dashboard;
+export default Dashboard;

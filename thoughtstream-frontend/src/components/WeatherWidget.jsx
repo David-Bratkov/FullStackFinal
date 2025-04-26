@@ -12,7 +12,7 @@ function WeatherWidget(){
             const key = import.meta.env.VITE_WEATHER_API_KEY;
             const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`);
             
-            setWeather = ({
+            setWeather ({
                 city: res.data.name,
                 temp:res.data.main.temp,
                 condition: res.data.weather[0].main,
@@ -30,3 +30,5 @@ function WeatherWidget(){
     </div>
    );
 }
+
+export default WeatherWidget;
