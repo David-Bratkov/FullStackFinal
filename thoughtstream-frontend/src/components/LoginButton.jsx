@@ -15,7 +15,7 @@ function LoginButton() {
       response,
     )
 
-    console.log("DEBUG Login response:", res.data);
+    // console.log("DEBUG Login response:", res.data);
 
     login(res.data.token, res.data.user);
 

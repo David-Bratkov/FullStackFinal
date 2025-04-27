@@ -6,20 +6,26 @@
 */
 import React, {useContext, useEffect, useState} from "react";
 import DiaryEntryCard from "./DiaryEntryCard";
-import api from "../services/api";
 import { AuthContext } from "../context/AuthContext";
 import { fetchEntries } from "../services/api"; 
+import { useNavigate } from "react-router-dom";
 
 function DiaryList(){
    const [entries, setEntries] = useState([]);
    const {token} = useContext(AuthContext);
+   const navigate = useNavigate();
+
    useEffect(() => {
       fetchEntries(token)
          .then((response) => {
-            // console.log("Fetched entries:", response);
+            console.log("Fetched entries:", response);
             setEntries(response);
          })
          .catch((error) => {
+            if (error.response.status === 403) {
+               console.log("Token expired or invalid, redirecting to login");
+               navigate("/");
+            }
             console.error("Error fetching entries:", error);
          });
    }, []);
@@ -30,8 +36,10 @@ function DiaryList(){
           entries.map((entry) => (
             <DiaryEntryCard
               key={entry._id}
+              id={entry._id}
               title={entry.title}
               content={entry.content}
+              creation={entry.createdAt}
               weather={entry.weather} // Pass the weather object
             />
           ))

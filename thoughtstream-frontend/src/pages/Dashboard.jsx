@@ -2,25 +2,42 @@ import Header from "../components/Header";
 import WeatherWidget from "../components/WeatherWidget";
 import DiaryList from "../components/DiaryList";
 import NewEntryForm from "../components/NewEntryForm";
-import DiaryEntryCard from "../components/DiaryEntryCard";
 import { AuthContext } from "../context/AuthContext";
-import { useContext, useState } from "react";
-import api from "../services/api";
+import { useContext, useState, useEffect } from "react";
+import { createEntry, fetchEntries } from "../services/api";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-   const { user } = useContext(AuthContext); 
+   const { user, token } = useContext(AuthContext); 
    const [entries, setEntries] = useState([]); 
+   const navigate = useNavigate();
 
    // Handle form submission
    const handleSubmit = (entryData) => {
-      console.log(entryData);
-      setEntries([entryData, ...entries]); 
-      console.log("ENTRIES",entries);  // Check the updated state
-     // api.post("/api/diary", entries);
+      navigator.geolocation.getCurrentPosition(async (position) => {
+         const {latitude, longitude} = position.coords;
+         const key = import.meta.env.VITE_WEATHER_API_KEY;
+         const weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`);
+
+         const entry = {
+            ...entryData,
+            location: weather.data.name,
+            user: user._id,
+         }
+
+         const returnedEntry = await createEntry(entry, token);
+
+         fetchEntries(token).then((response) => {
+            console.log("Updated entries:", response);
+            setEntries([returnedEntry, ...response]);
+         })
+
+     });
    };
 
    if (!user) {
-      return <p>Please Log In</p>;
+      navigate("/");
    }
 
    return (

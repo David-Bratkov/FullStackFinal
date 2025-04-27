@@ -75,10 +75,8 @@ export const createEntry = async (req, res) => {
          // Fetch weather data if location is provided
          const weatherData = location ? await fetchWeather(location) : null;
          
-         // console.log(JSON.stringify(weatherData));
-
          const newEntry = new DiaryEntry({
-            user: req.user.id,
+            user: req.user.userId,
             title,
             content,
             reflection,
@@ -89,6 +87,7 @@ export const createEntry = async (req, res) => {
       await newEntry.save();
       res.status(201).json(newEntry);
    } catch (error) {
+      console.error("Error creating diary entry:", error);
       res.status(400).json({ message: "Server Error: Unable to create diary entry" });
    }
 };
@@ -151,11 +150,6 @@ export const deleteEntry = async (req, res) => {
          return res.status(404).json({ message: "Diary entry not found" });
       }
 
-      // Check if the user is authorized to delete the entry
-      if (entry.user.toString() !== req.user._id.toString()) {
-         return res.status(403).json({ message: "Forbidden" });
-      }
-
       // Find the diary entry by ID and delete it
       await DiaryEntry.findByIdAndDelete(req.params.id);
 
@@ -163,6 +157,7 @@ export const deleteEntry = async (req, res) => {
 
 
    } catch (error) {
+      console.error("Error deleting diary entry:", error);
       res.status(500).json({ message: "Server Error: Unable to delete diary entry" , error });
    }
 };

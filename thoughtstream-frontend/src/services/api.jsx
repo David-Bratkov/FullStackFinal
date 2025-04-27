@@ -59,6 +59,52 @@ export async function fetchEntries(token) {
    }
 }
 
+export async function createEntry(entryData, token) {
+   try {
+      const res = await axios.post("http://localhost:5000/api/diary", entryData, {
+         headers: {
+            Authorization: `Bearer ${token}`
+         }
+      });
+      return res.data; // Newly created entry
+   } catch (err) {
+      // console.error("error creating entry:", err);
+      throw err;
+   }
+}
+
+export async function updateEntry(entryId, entryData, token) {
+   try {
+      const res = await axios.put(`http://localhost:5000/api/diary/${entryId}`, entryData, {
+         headers: {
+            Authorization: `Bearer ${token}`
+         }
+      });
+      return res.data; // Updated entry
+   }
+   catch (err) {
+      // console.error("error updating entry:", err);
+      throw err;
+   }
+}
+
+export async function deleteEntry(entryId, token) {
+
+   console.log("DEBUG Deleting entry with ID:", entryId);
+   // console.log("DEBUG Using token:", token);
+   try {
+      const res = await axios.delete(`http://localhost:5000/api/diary/${entryId}`, {
+         headers: {
+            Authorization: `Bearer ${token}`
+         }
+      });
+      return res.data; // Response from the delete operation
+   } catch (err) {
+      // console.error("error deleting entry:", err);
+      throw err;
+   }
+}
+
 /**
 * Export the configured Axios instance
 *

@@ -13,13 +13,11 @@ function WeatherWidget(){
             const key = import.meta.env.VITE_WEATHER_API_KEY;
             // console.log(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`)
             const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`);
-            
 
             setWeather ({
                 city: response.data.name,
                 temp:response.data.main.temp,
-                condition: response.data.weather[0].main,
-                icon:response.data.weather[0].icon,
+                condition: response.data.weather[0].main
             });
         }
         );
