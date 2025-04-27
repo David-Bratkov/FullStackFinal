@@ -46,7 +46,7 @@ api.interceptors.request.use((config) => {
 // Example: GET request to fetch diary entries
 export async function fetchEntries(token) {
    try {
-      const res = await axios.get("/api/diary", {
+      const res = await axios.get("localhost:5000/api/diary", {
          headers: {
             Authorization: `Bearer ${token}`
          }
