@@ -23,7 +23,7 @@ function Dashboard(){
          <Header />
          <WeatherWidget />
          <NewEntryForm />
-         {/* <DiaryList /> */}
+         <DiaryList />
          <DiaryEntryCard />
       </div>
    );

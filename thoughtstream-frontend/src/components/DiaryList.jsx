@@ -16,18 +16,28 @@ function DiaryList(){
    useEffect(() => {
       fetchEntries(token)
          .then((response) => {
-            console.log("Fetched entries:", response.data);
-            setEntires(response.data);
+            // console.log("Fetched entries:", response);
+            setEntires(response);
          })
          .catch((error) => {
             console.error("Error fetching entries:", error);
          });
    }, []);
-   return(
+   
+   return (
       <div>
-         {entries.map((entry) => ( //entries is undefined
-            <DiaryEntryCard key={entry._id} {... entry} />
-         ))}
+        {Array.isArray(entries) && entries.length > 0 ? (
+          entries.map((entry) => (
+            <DiaryEntryCard
+              key={entry._id}
+              title={entry.title}
+              content={entry.content}
+              weather={entry.weather} // Pass the weather object
+            />
+          ))
+        ) : (
+          <p>No diary entries found.</p>
+        )}
       </div>
    );
 }

@@ -10,11 +10,16 @@ import React from "react";
 function DiaryEntryCard({title, content, creation, weather}){
    return(
       <div>
-         <h1>{title}</h1>
-         <p>{content}</p>
-         <p>Creation Date: {new Date(creation).toDateString()}</p>
-         {weather && <p>Weather {weather}</p>}
-      </div>
+      <h2>{title}</h2>
+      <p>{content}</p>
+      {weather && (
+        <div>
+          <p>Condition: {weather.condition}</p>
+          <p>Temperature: {weather.temperature}°C</p>
+          <p>Location: {weather.location}</p>
+        </div>
+      )}
+    </div>
 
    );
 }
