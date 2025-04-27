@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function PrivateRoute ({children}) {
     const {isAuthenticated} = useContext(AuthContext);
 
-    console.log("isAuthenticated", isAuthenticated);
+    // console.log("isAuthenticated", isAuthenticated);
     const navigate = useNavigate(); 
 
     return isAuthenticated ? children : navigate("/");

@@ -21,9 +21,9 @@ function Dashboard(){
    return(
       <div>
          <Header />
-         {/* <WeatherWidget /> */}
+         <WeatherWidget />
          <NewEntryForm />
-         <DiaryList />
+         {/* <DiaryList /> */}
          <DiaryEntryCard />
       </div>
    );
