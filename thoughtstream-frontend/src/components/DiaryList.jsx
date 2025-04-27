@@ -28,7 +28,7 @@ function DiaryList(){
             }
             console.error("Error fetching entries:", error);
          });
-   }, []);
+   }, [entries]);
    
    return (
       <div>

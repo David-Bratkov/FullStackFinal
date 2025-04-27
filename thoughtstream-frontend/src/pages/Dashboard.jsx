@@ -20,7 +20,11 @@ function Dashboard() {
          const key = import.meta.env.VITE_WEATHER_API_KEY;
          const weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`);
 
-         const entry = {
+         // console.log("Weather data:", weather.data);
+         // console.log("Weather name:", weather.data.name);
+
+         const entry = {//weathername isnt exactly correct, we will need a format
+            //such as "Vancouver, US"
             ...entryData,
             location: weather.data.name,
             user: user._id,
