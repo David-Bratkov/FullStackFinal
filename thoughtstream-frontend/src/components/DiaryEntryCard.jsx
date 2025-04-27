@@ -12,6 +12,7 @@ function DiaryEntryCard({title, content, creation, weather}){
       <div>
       <h2>{title}</h2>
       <p>{content}</p>
+      <p>Created on: {new Date(createdAt).toLocaleDateString()}</p>
       {weather && (
         <div>
           <p>Condition: {weather.condition}</p>

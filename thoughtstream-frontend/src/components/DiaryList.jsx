@@ -11,13 +11,13 @@ import { AuthContext } from "../context/AuthContext";
 import { fetchEntries } from "../services/api"; 
 
 function DiaryList(){
-   const [entries, setEntires] = useState([]);
+   const [entries, setEntries] = useState([]);
    const {token} = useContext(AuthContext);
    useEffect(() => {
       fetchEntries(token)
          .then((response) => {
             // console.log("Fetched entries:", response);
-            setEntires(response);
+            setEntries(response);
          })
          .catch((error) => {
             console.error("Error fetching entries:", error);

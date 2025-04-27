@@ -9,7 +9,7 @@ function Header(){
     const {user, logout} = useContext(AuthContext);
     return(
         <header>
-            <h1>ThoughtStream</h1>
+            <h1>Header</h1>
             <span>Hello {user.name}</span>
             <button onClick={logout}>Logout</button>
         </header>
