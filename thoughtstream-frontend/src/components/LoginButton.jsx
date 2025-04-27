@@ -2,18 +2,22 @@ import React, { useContext } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext"; // Import the AuthContext
+import axios from "axios";
 
 function LoginButton() {
   const navigate = useNavigate(); // Hook to programmatically navigate
   const { login } = useContext(AuthContext); // Access the login function from AuthContext
 
-  const handleLogin = (response) => {
-    const token = response.credential;
+  const handleLogin = async (response) => {
 
-    // Save the token to localStorage or context
-    localStorage.setItem("authToken", token);
+    const res = await axios.post(
+      "http://localhost:5000/api/auth/google",
+      response,
+    )
 
-    login(import.meta.env.VITE_VITE_JWT_TOKEN ,token); // Call the login function from AuthContext
+    console.log("DEBUG Login response:", res.data);
+
+    login(res.data.token, res.data.user);
 
     // Redirect to the dashboard
     navigate("/dashboard");

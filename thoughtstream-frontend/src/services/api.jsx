@@ -51,6 +51,7 @@ export async function fetchEntries(token) {
             Authorization: `Bearer ${token}`
          }
       });
+      // console.log("Token:", token);
       return res.data; // Array of entries
    } catch (err) {
       console.error("error fetching entries:", err);
