@@ -46,8 +46,9 @@ api.interceptors.request.use((config) => {
 // Example: GET request to fetch diary entries
 export async function fetchEntries(token) {
    try {
-      // console.log("DEBUG Fetching entries with token:", token);
-      const res = await axios.get("http://localhost:5000/api/diary", {
+
+      // console.log(`API DEBUG: Base URL is ${import.meta.env.VITE_API_BASE_URL}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/diary`, {
          headers: {
             Authorization: `Bearer ${token}`
          }
@@ -59,9 +60,23 @@ export async function fetchEntries(token) {
    }
 }
 
+export async function fetchEntryById(entryId, token) {
+   try {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/diary/${entryId}`, {
+         headers: {
+            Authorization: `Bearer ${token}`
+         }
+      });
+      return res.data; // Single entry
+   } catch (err) {
+      console.error("error fetching entry by ID:", err);
+      throw err;
+   }
+}
+
 export async function createEntry(entryData, token) {
    try {
-      const res = await axios.post("http://localhost:5000/api/diary", entryData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/diary`, entryData, {
          headers: {
             Authorization: `Bearer ${token}`
          }
@@ -75,7 +90,7 @@ export async function createEntry(entryData, token) {
 
 export async function updateEntry(entryId, entryData, token) {
    try {
-      const res = await axios.put(`http://localhost:5000/api/diary/${entryId}`, entryData, {
+      const res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/diary/${entryId}`, entryData, {
          headers: {
             Authorization: `Bearer ${token}`
          }
@@ -93,7 +108,7 @@ export async function deleteEntry(entryId, token) {
    console.log("DEBUG Deleting entry with ID:", entryId);
    // console.log("DEBUG Using token:", token);
    try {
-      const res = await axios.delete(`http://localhost:5000/api/diary/${entryId}`, {
+      const res = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/diary/${entryId}`, {
          headers: {
             Authorization: `Bearer ${token}`
          }

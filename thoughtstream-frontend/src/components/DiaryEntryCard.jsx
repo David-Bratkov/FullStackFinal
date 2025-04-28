@@ -3,7 +3,7 @@ import { deleteEntry } from "../services/api";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-function DiaryEntryCard({id, title, content, creation, weather}){
+function DiaryEntryCard({id, title, content, creation, weather, updateEntry}) {
    const {token} = useContext(AuthContext);
    const [entries, setEntries] = useState([]);
 
@@ -19,6 +19,20 @@ function DiaryEntryCard({id, title, content, creation, weather}){
          console.error("Error deleting entry:", error);
       }
    }
+
+   const handleUpdateEntry = async () => {
+
+      // console.log("Passed updateEntry function:", updateEntry.updateEntry);
+      try {
+         // Call the updateEntry function passed as a prop
+         await updateEntry.updateEntry(id);
+         console.log("Entry updated successfully");
+      }
+      catch (error) {
+         console.error("Error updating entry:", error);
+      }
+   }
+
    return(
       <div>
       <h2>{title}</h2>
@@ -33,7 +47,7 @@ function DiaryEntryCard({id, title, content, creation, weather}){
       )}
       <div>
          <button onClick={deleteEntryHandler}>Delete</button>
-         <button >Update WIP</button>
+         <button onClick={handleUpdateEntry}>Update WIP</button>
       </div>   
     </div>
 

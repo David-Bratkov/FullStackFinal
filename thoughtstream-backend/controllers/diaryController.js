@@ -44,13 +44,16 @@ export const getAllEntries = async (req, res) => {
 */
 export const getEntryById = async (req, res) => {
    try {
-      const entry = await DiaryEntry.findById(req.user.userId);
+      // console.log("Fetching entry with ID:", req.params.id);
+      const entry = await DiaryEntry.findById(req.params.id);
 
       if (!entry) {
          return res.status(404).json({ message: "Diary entry not found" });
       }
 
-      if (entry.user.toString() !== req.user._id.toString()) {
+      // console.log("Fetched entry:", entry);
+      // console.log(entry.user.toString(), req.user.userId);
+      if (entry.user.toString() !== req.user.userId) {
          return res.status(403).json({ message: "Forbidden" });
       }
 
