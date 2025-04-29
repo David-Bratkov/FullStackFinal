@@ -18,7 +18,7 @@ function DiaryList(){
    useEffect(() => {
       fetchEntries(token)
          .then((response) => {
-            console.log("Fetched entries:", response);
+            //console.log("Fetched entries:", response);
             setEntries(response);
          })
          .catch((error) => {

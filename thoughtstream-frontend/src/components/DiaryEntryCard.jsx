@@ -10,6 +10,8 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
    const [contentEdit, setcontentEdit] = useState(content);
    const [EditMode, setEditMode] = useState(false);
    const [locationEdit, setlocationEdit] = useState(location);
+   const [conditionEdit, setconditionEdit] = useState(condition);
+   const [temperatureEdit, settemperatureEdit] = useState(temperature);
    const deleteEntryHandler = async () => {
       try {
          const returnValue = await deleteEntry(id, token);
@@ -23,12 +25,15 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
       }
    }
    const saveUpdateHandler = async () => {
+      console.log("SAVEUPDATE RUNNING");
       try{
          const updatedEntry = {
             title: titleEdit,
             content: contentEdit,
             location: locationEdit,
+            weather: weather,
          };
+         console.log("NOW Updating entry with data:", updatedEntry);
          const response = await updateEntry(id, updatedEntry, token);
          console.log("Entry updated:", response);
          setEditMode(false);
@@ -36,50 +41,56 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
          console.error("Error Updating Entry", error);
       }
    }
-   return(
+   return (
       <div>
-      <h2>{title}</h2>
-      <p>{content}</p>
-      <p>Location: {location}</p>
-      <p>Temperature: {temperature}</p>
-      <p>Condition: {condition}</p>
-      <p>Created on: {new Date(creation).toLocaleDateString()}</p>
-      {weather && (
-        <div>
-          <p>Condition: {weather.condition}</p>
-          <p>Temperature: {weather.temperature}°C</p>
-          <p>Location: {weather.location}</p>
-        </div>
-      )}
-      <button onClick={deleteEntryHandler}>Delete</button>
-      <div>
-    {EditMode ? (
-      <div>
-        <input
-          type="text"
-          value={titleEdit}
-          onChange={(e) => settitleEdit(e.target.value)}
-         />
-        <textarea
-          value={contentEdit}
-          onChange={(e) => setcontentEdit(e.target.value)}
-         />
-         <textarea
-            value={locationEdit}
-            onChange={(e) => setlocationEdit(e.target.value)}
+        {EditMode ? (
+          <>
+            <input
+              type="text"
+              value={titleEdit}
+              onChange={(e) => settitleEdit(e.target.value)}
             />
-        <button onClick={saveUpdateHandler}>Save</button>
-        <button onClick={() => setEditMode(false)}>Cancel</button>
+            <textarea
+              value={contentEdit}
+              onChange={(e) => setcontentEdit(e.target.value)}
+            />
+            <input
+              type="text"
+              value={locationEdit}
+              onChange={(e) => setlocationEdit(e.target.value)}
+            />
+          </>
+        ) : (
+          <>
+            <h2>{title}</h2>
+            <p>{content}</p>
+            <p>Location: {location}</p>
+          </>
+        )}
+        <p>Temperature: {temperature}</p>
+        <p>Condition: {condition}</p>
+        <p>Created on: {new Date(creation).toLocaleDateString()}</p>
+    
+        {weather && (
+          <div>
+            <p>Condition: {weather.condition}</p>
+            <p>Temperature: {weather.temperature}°C</p>
+            <p>Location: {weather.location}</p>
+          </div>
+        )}
+        {EditMode ? (
+          <>
+            <button onClick={saveUpdateHandler}>Save</button>
+            <button onClick={() => setEditMode(false)}>Cancel</button>
+          </>
+        ) : (
+          <>
+            <button onClick={() => setEditMode(true)}>Update</button>
+            <button onClick={deleteEntryHandler}>Delete</button>
+          </>
+        )}
       </div>
-      ) : (
-      <div>
-        <button onClick={() => setEditMode(true)}>Update</button>
-      </div>
-      )}
-      </div>
-   </div>
-
-   );
+    );
 }
 
 export default DiaryEntryCard;
