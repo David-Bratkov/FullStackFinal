@@ -8,9 +8,11 @@ import { AuthContext } from "../context/AuthContext";
 function Header(){
     const {user, logout} = useContext(AuthContext);
     return(
-        <header>
-            <h1>Header</h1>
-            <span>Hello {user.name}</span>
+        <header className="header">
+            <div className="header-left">
+            <h1 className="header-title">Your Diary</h1>
+            <span className="user-name">Hello {user.name}</span>
+            </div>
             <button onClick={logout}>Logout</button>
         </header>
     );

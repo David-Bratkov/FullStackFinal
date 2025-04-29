@@ -1,11 +1,254 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     background-color: aliceblue;
+    font-family: Arial, sans-serif;
+}
+
+.app-title{
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.login-box{
+    background-color: white;
+    width: 22rem;          
+    margin: 6rem auto;     
+    padding: 2rem;         
+    border-radius: 0.75rem; 
+    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.1); 
+    text-align: center;
+}
+
+.login-title{
+    color: #333;
+    font-size: 1.75rem;    
+    margin-bottom: 1.25rem; 
+    background-color: white;
+}
+
+.weather-widget{
+    background-color: #ffffff;
+    border-radius: 2rem;
+    padding: 1.5rem;
+    max-width: 500px;
+    margin: 3rem auto;
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+}
+
+.weather-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: left;
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+}
+
+.location-title{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    background-color: white ;
+}
+  
+.condition-title{
+    font-size:  2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    background-color: white;
+}
+
+.temp-title{
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    background-color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e6f0ff; 
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', sans-serif;
+}
+  
+.header-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    margin: 0;
+    text-decoration: underline;
+    background-color: #e6f0ff;
+}
+  
+.user-name {
+    font-size: 1.5rem;
+    color: #555;
+    margin-right: auto;
+    margin-left: 2rem;
+    background-color: #e6f0ff;
+    margin: 0;
+}
+  
+button {
+    background-color: #889bd6; 
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+  
+button:hover{
+    background-color: #4e65af; 
 }
 
 
-.weather_widget{
+.new-entry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;             
+    padding: 2rem;
+    max-width: 400px;       
+    margin: 2rem auto;       
+    background-color: #fff;  
+    border-radius: 12px;     
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  
+}
+
+.title-text, .location-text,.content-text{
+    font-size: 2rem;
+    padding:1.5rem;
+    background-color: white;
+}
+
+ .location-input, .content-input, .title-input {
+    width: 100%;                    
+    padding: 0.8rem 1rem;           
+    max-width: 300px;               
+    border: 1px solid #ddd;         
+    border-radius: 8px;             
+    font-size: 1rem;               
+    background-color: #f9f9f9;      
+    transition: all 0.3s ease;      
+    height: 50px;      
+    background-color: aliceblue;              
+}
+
+.input-title-text, .input-content-text, .input-location-text{
+    background-color: white;
+}
+
+.main-content{
+    display:flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
     
 }
+.left-panel{
+    flex:1;
+    max-width: 600px;
+    margin-left: 3rem;
+}
+
+.right-panel{
+    flex:2;
+    margin-left: 2rem;
+}
+
+.diary-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;           
+    padding: 2rem;
+    max-width: 50%;
+    margin: 0 auto;        
+    background-color: #f0f8ff; 
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    background-color: white
+}
+
+.card {
+    background-color: #e6f0ff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+  
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+  
+.card-title {
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+.card-title, .card-content, .card-created,.card-delete-button,.card-update-button{
+    background-color: #e6f0ff;
+}
+
+.card-content {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+  
+.card-created {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.card-buttons{
+    background-color: #e6f0ff;
+}
+.card button {
+    background-color: #889bd6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+  
+.card-delete-button:hover {
+    background-color: #e57373;
+}
+  
+.card-update-button:hover {
+    background-color: #4e65af;
+}
+
+.diary-list-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid #889bd6;
+    background-color: transparent;
+  }

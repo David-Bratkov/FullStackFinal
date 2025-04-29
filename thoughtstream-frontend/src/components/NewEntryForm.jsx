@@ -21,7 +21,7 @@ function NewEntryForm({ onSubmit }) {
    }
 
    return (
-      <form                       
+      <form className="new-entry-form"                    
          // onSubmit handler is triggered when the user clicks "Save Entry" or presses Enter
          onSubmit={(e) => {               // e is the event object
             e.preventDefault();              // Prevents default form submission (page reload)
@@ -39,20 +39,21 @@ function NewEntryForm({ onSubmit }) {
             setContent("");                  // Clears the content textarea after submission
             setLocation("");                 // Clears the location input after submission
          }}>
-         <div>
-            <label> Title:
+         <div className="title-text">
+            <label className="input-title-text"> Title:
             <input
                value={title}                 // Binds input value to title state
                onChange={(e) =>              // e.target: element that triggered the event
                   setTitle(e.target.value)   // Updates title state with user input
                }
                placeholder="Title"
+               className="title-input"
             />
             </label>
          </div>
 
-         <div>
-            <label>
+         <div className="content-text">
+            <label className="input-content-text">
             Content:
             <textarea
                value={content}               // Binds textarea value to content state
@@ -60,18 +61,20 @@ function NewEntryForm({ onSubmit }) {
                   setContent(e.target.value) // Updates content state with user input
                }
                placeholder="Write your thoughts..."
+               className="content-input"
             />
             </label>
          </div>
          
-         <div>
-            <label>Location:
+         <div className="location-text">
+            <label className="input-location-text">Location:
             <input
                value={location}              // Binds input value to location state
                onChange={(e) =>              // e.target: element that triggered the event
                   setLocation(e.target.value) // Updates location state with user input
                }
                placeholder="Enter Location"
+               className="location-input"
             />
             </label>
          </div>

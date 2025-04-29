@@ -48,17 +48,23 @@ function Dashboard() {
    }
 
    return (
-      <div>
+      <div className="dashboard">
          <Header />
-         <WeatherWidget />
-         <NewEntryForm onSubmit={handleSubmit} />
+         <div className="main-content">
+            <div className="left-panel">
+               <WeatherWidget />
+               <NewEntryForm onSubmit={handleSubmit} />
+         </div>
          {/* { isVisable && <DiaryEntryInput /> }  */}
-         <h3>Recent Entries</h3>
+         <div className="right-panel">
+         {/*<h3 className="right-panel-title">Recent Entries</h3> */}
          <div>
            <DiaryList 
            entries={entries}
            updateEntry={updateEntry}
            />
+         </div>
+         </div>
          </div>
       </div>
    );

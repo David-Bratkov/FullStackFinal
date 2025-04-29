@@ -28,10 +28,11 @@ function WeatherWidget(){
     }
 
    return(
-    <div>
-        <p>Location: {weather.city}</p>
-        <p>Temp: {weather.temp}</p>
-        <p>Condition: {weather.condition}</p>
+    <div className="weather-widget">
+        <p className="weather-title">Weather</p>
+        <p className="location-title">Location: {weather.city}</p>
+        <p className="temp-title">Temp: {weather.temp}</p>
+        <p className="condition-title">Condition: {weather.condition}</p>
     </div>
    );
 }

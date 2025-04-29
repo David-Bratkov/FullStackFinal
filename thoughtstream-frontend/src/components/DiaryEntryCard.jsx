@@ -88,10 +88,10 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
             <button onClick={() => setEditMode(false)}>Cancel</button>
          </div>
       ) : (
-         <div>
-            <h2>{title}</h2>
-            <p>{content}</p>
-            <p>Created on: {new Date(creation).toLocaleDateString()}</p>
+         <div className="card">
+            <h2 className="card-title">{title}</h2>
+            <p className="card-content">{content}</p>
+            <p className="card-created">Created on: {new Date(creation).toLocaleDateString()}</p>
             {weather && (
             <div>
                <p>Condition: {weather.condition}</p>
@@ -99,9 +99,9 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
                <p>Location: {weather.location}</p>
             </div>
             )}
-            <div>
-               <button onClick={deleteEntryHandler}>Delete</button>
-               <button onClick={() => setEditMode(true)}>Update</button>
+            <div className="card-buttons">
+               <button className="card-delete-button" onClick={deleteEntryHandler}>Delete</button>
+               <button className="card-update-button" onClick={() => setEditMode(true)}>Update</button>
             </div>
          </div>
       )}
