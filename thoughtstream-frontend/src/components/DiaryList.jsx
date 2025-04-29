@@ -51,7 +51,8 @@ function DiaryList(updateEntry){
               location={entry.location}
               weather={entry.weather} // Pass the weather object
               updateEntry={updateEntry}
-              
+              reflection={entry.reflection}
+              tags={entry.tags}
             />
           ))
         ) : (

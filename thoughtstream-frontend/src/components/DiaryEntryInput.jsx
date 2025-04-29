@@ -9,6 +9,8 @@ function DiaryEntryInput({ id }) {
    const [content, setContent] = useState("");
    const [location, setLocation] = useState("");
    const [weather, setWeather] = useState({});
+   const [reflection, setReflection] = useState("");
+   const [tags, setTags] = useState([]);
 
    useEffect(() => {
       fetchEntryById(id, token)
@@ -17,6 +19,8 @@ function DiaryEntryInput({ id }) {
             setTitle(response.title);
             setContent(response.content);
             setLocation(response.location);
+            setReflection(response.reflection);
+            setTags(response.setTags);
          })
          .catch((error) => {
             if (error) {
@@ -60,6 +64,17 @@ function DiaryEntryInput({ id }) {
             <input
                type="text"
                value={location} // Controlled input
+               onChange={(e) => setLocation(e.target.value)} // Update state on change
+            />
+            </p>
+         </div>
+
+         <div>
+            <p>
+            Reflection:{" "}
+            <input
+               type="text"
+               value={reflection} // Controlled input
                onChange={(e) => setLocation(e.target.value)} // Update state on change
             />
             </p>
