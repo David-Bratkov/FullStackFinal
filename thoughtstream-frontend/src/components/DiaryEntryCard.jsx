@@ -3,20 +3,21 @@ import { deleteEntry, updateEntry } from "../services/api";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-function DiaryEntryCard({id, title, location, temperature, condition,content, creation, weather}) {
+function DiaryEntryCard({id, title, location, reflection, content, creation, weather}) {
    const {token} = useContext(AuthContext);
    const [entries, setEntries] = useState([]);
    const [titleEdit, settitleEdit] = useState(title);
    const [contentEdit, setcontentEdit] = useState(content);
    const [EditMode, setEditMode] = useState(false);
    const [locationEdit, setlocationEdit] = useState(location);
+   const [reflectionEdit, setreflectionEdit] = useState(reflection);
 
    const noEmptyFields = (entry) => {
       const errors = [];
       if (!entry.title.trim()) errors.push("title");
       if (!entry.content.trim()) errors.push("content");
       if (!entry.location.trim()) errors.push("location");
-
+      if (!entry.reflection.trim()) errors.push("reflection");
       return errors;
    }
 
@@ -83,6 +84,13 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
                onChange={(e) => setlocationEdit(e.target.value)}
                />
             </div>
+
+            <div>
+               <textarea
+               value={reflectionEdit}
+               onChange={(e) => setreflectionEdit(e.target.value)}
+               />
+            </div>
                
             <button onClick={saveUpdateHandler}>Save</button>
             <button onClick={() => setEditMode(false)}>Cancel</button>
@@ -99,6 +107,7 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
                <p>Location: {weather.location}</p>
             </div>
             )}
+            <p>{reflection}</p>
             <div>
                <button onClick={deleteEntryHandler}>Delete</button>
                <button onClick={() => setEditMode(true)}>Update</button>
