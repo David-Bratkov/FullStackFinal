@@ -6,8 +6,8 @@ import LoginButton from '../components/LoginButton';
 
 function Login(){
     return(
-        <div>
-            <h2>Login With Google</h2>
+        <div className='login-box'>
+            <h2 className='login-title'>Login With Google</h2>
             <LoginButton/>
         </div>
     )

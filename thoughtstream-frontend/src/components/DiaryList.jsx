@@ -38,7 +38,8 @@ function DiaryList(updateEntry){
    const limitedEntries = entries.slice(0,5)
 
    return (
-      <div>
+      <div className="diary-list">
+         <p className="diary-list-title">Recent Entries</p>
         {Array.isArray(limitedEntries) && limitedEntries.length > 0 ? (
           limitedEntries.map((entry) => (
             <DiaryEntryCard
@@ -50,6 +51,7 @@ function DiaryList(updateEntry){
               location={entry.location}
               weather={entry.weather} // Pass the weather object
               updateEntry={updateEntry}
+              
             />
           ))
         ) : (

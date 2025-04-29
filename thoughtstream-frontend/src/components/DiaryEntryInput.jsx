@@ -34,8 +34,8 @@ function DiaryEntryInput({ id }) {
    const completeUpdate = async () => {}
 
    return (
-      <div>
-         <div>
+      <div className='diary-input'>
+         <div className='input'>
             <h2>
             Title:{" "}
             <input
@@ -66,8 +66,8 @@ function DiaryEntryInput({ id }) {
          </div>
 
         <div>
-          <button onClick={cancelUpdate}>Cancel</button>
-          <button onClick={completeUpdate}>Submit</button>
+          <button className='cancel-button' onClick={cancelUpdate}>Cancel</button>
+          <button className='submit-button' onClick={completeUpdate}>Submit</button>
         </div>
       </div>
 
