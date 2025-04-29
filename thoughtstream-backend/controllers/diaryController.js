@@ -114,6 +114,8 @@ export const updateEntry = async (req, res) => {
          location,
       };
 
+      // console.log("DEBUG updateData:", updateData);
+
       // Update weather data if location is provided
       if (location) {
          updateData.weather = await fetchWeather(location);
@@ -121,7 +123,7 @@ export const updateEntry = async (req, res) => {
 
       const oldEntry = await DiaryEntry.findById(id);
 
-      if (oldEntry.user.toString() !== req.user._id.toString()) {
+      if (oldEntry.user.toString() !== req.user.userId.toString()) {
          return res.status(403).json({ message: "Forbidden" });
       }
 
@@ -160,7 +162,7 @@ export const deleteEntry = async (req, res) => {
 
 
    } catch (error) {
-      console.error("Error deleting diary entry:", error);
+      // console.error("Error deleting diary entry:", error);
       res.status(500).json({ message: "Server Error: Unable to delete diary entry" , error });
    }
 };

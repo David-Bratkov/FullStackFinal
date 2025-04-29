@@ -44,6 +44,7 @@ function DiaryList(updateEntry){
               title={entry.title}
               content={entry.content}
               creation={entry.createdAt}
+              location={entry.location}
               weather={entry.weather} // Pass the weather object
               updateEntry={updateEntry}
             />

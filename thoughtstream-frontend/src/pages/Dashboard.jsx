@@ -17,30 +17,14 @@ function Dashboard() {
    const navigate = useNavigate();
 
    // Handle form submission
-   const handleSubmit = (entryData) => {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-         const {latitude, longitude} = position.coords;
-         const key = import.meta.env.VITE_WEATHER_API_KEY;
-         const weather = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${key}`);
+   const handleSubmit = async (entryData) => {
 
-         // console.log("Weather data:", weather.data);
-         // console.log("Weather name:", weather.data.name);
+      // console.log("Entry to be created:", entryData);
+      const returnedEntry = await createEntry(entryData, token);
 
-         const entry = {//weathername isnt exactly correct, we will need a format
-            //such as "Vancouver, US"
-            ...entryData,
-            location: weather.data.name,
-            user: user._id,
-         }
-
-         const returnedEntry = await createEntry(entry, token);
-
-         fetchEntries(token).then((response) => {
-            console.log("Updated entries:", response);
-            setEntries([returnedEntry, ...response]);
-         })
-
-     });
+      fetchEntries(token).then((response) => {
+         setEntries([returnedEntry, ...response]);
+      })
    };
 
    const updateEntry = async (entryId) => {
@@ -66,10 +50,9 @@ function Dashboard() {
    return (
       <div>
          <Header />
-         <h2>Welcome, {user.name}!</h2>
          <WeatherWidget />
          <NewEntryForm onSubmit={handleSubmit} />
-         { isVisable && <DiaryEntryInput /> }
+         {/* { isVisable && <DiaryEntryInput /> }  */}
          <h3>Recent Entries</h3>
          <div>
            <DiaryList 

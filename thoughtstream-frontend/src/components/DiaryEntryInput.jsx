@@ -35,29 +35,36 @@ function DiaryEntryInput({ id }) {
 
    return (
       <div>
-        <h2>
-          Title:{" "}
-          <input
-            type="text"
-            value={title} // Controlled input
-            onChange={(e) => setTitle(e.target.value)} // Update state on change
-          />
-        </h2>
-        <p>
-          Content:{" "}
-          <textarea
-            value={content} // Controlled textarea
-            onChange={(e) => setContent(e.target.value)} // Update state on change
-          />
-        </p>
-        <p>
-          Location:{" "}
-          <input
-            type="text"
-            value={location} // Controlled input
-            onChange={(e) => setLocation(e.target.value)} // Update state on change
-          />
-        </p>
+         <div>
+            <h2>
+            Title:{" "}
+            <input
+               type="text"
+               value={title} // Controlled input
+               onChange={(e) => setTitle(e.target.value)} // Update state on change
+            />
+         </h2>
+         </div>
+         <div>
+            <p>
+            Content:{" "}
+            <textarea
+               value={content} // Controlled textarea
+               onChange={(e) => setContent(e.target.value)} // Update state on change
+            />
+         </p>
+         </div>
+         <div>
+            <p>
+            Location:{" "}
+            <input
+               type="text"
+               value={location} // Controlled input
+               onChange={(e) => setLocation(e.target.value)} // Update state on change
+            />
+            </p>
+         </div>
+
         <div>
           <button onClick={cancelUpdate}>Cancel</button>
           <button onClick={completeUpdate}>Submit</button>
