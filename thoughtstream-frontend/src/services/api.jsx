@@ -89,7 +89,7 @@ export async function createEntry(entryData, token) {
 }
 
 export async function updateEntry(entryId, entryData, token) {
-   console.log("DEBUG entryData to update:", entryData);
+   // console.log("DEBUG entryData to update:", entryData);
    try {
       const res = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/diary/${entryId}`, entryData, {
          headers: {

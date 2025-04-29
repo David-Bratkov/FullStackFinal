@@ -25,6 +25,7 @@ function DiaryList(updateEntry){
          })
          .catch((error) => {
             if (error) {
+               if (error.message === "Request aborted") return;
                console.error("Error fetching entries:", error);
                if (error.response.status === 403) {
                   console.log("Token expired or invalid, redirecting to login");
@@ -34,10 +35,12 @@ function DiaryList(updateEntry){
          });
    }, [entries]);
 
+   const limitedEntries = entries.slice(0,5)
+
    return (
       <div>
-        {Array.isArray(entries) && entries.length > 0 ? (
-          entries.map((entry) => (
+        {Array.isArray(limitedEntries) && limitedEntries.length > 0 ? (
+          limitedEntries.map((entry) => (
             <DiaryEntryCard
               key={entry._id}
               id={entry._id}   // To pass the entry ID for deletion
