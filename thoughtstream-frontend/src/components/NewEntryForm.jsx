@@ -12,12 +12,28 @@ function NewEntryForm({ onSubmit }) {
    const [content, setContent] = useState(""); // State for the content textarea
    const [location, setLocation] = useState(""); // State for the location input
 
+   const noEmptyFields = () => {
+      const errors = [];
+      if (!title.trim()) errors.push("title");
+      if (!content.trim()) errors.push("content");
+      if (!location.trim()) errors.push("location");
+      return errors;
+   }
+
    return (
       <form                       
          // onSubmit handler is triggered when the user clicks "Save Entry" or presses Enter
          onSubmit={(e) => {               // e is the event object
             e.preventDefault();              // Prevents default form submission (page reload)
-            //add a requirement to have the fields filled out
+            const errors = noEmptyFields();
+            if(errors.length === 1) {
+               alert(`Please fill out the ${errors.join(", ")} field`);
+               return;
+            }
+            if(errors.length > 1) {
+               alert(`Please fill out the ${errors.join(", ")} fields`);
+               return;
+            }
             onSubmit({ title, content, location });    // Passes form data to the parent component
             setTitle("");                    // Clears the title input after submission
             setContent("");                  // Clears the content textarea after submission

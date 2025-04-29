@@ -10,6 +10,16 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
    const [contentEdit, setcontentEdit] = useState(content);
    const [EditMode, setEditMode] = useState(false);
    const [locationEdit, setlocationEdit] = useState(location);
+
+   const noEmptyFields = (entry) => {
+      const errors = [];
+      if (!entry.title.trim()) errors.push("title");
+      if (!entry.content.trim()) errors.push("content");
+      if (!entry.location.trim()) errors.push("location");
+
+      return errors;
+   }
+
    const deleteEntryHandler = async () => {
       try {
          const returnValue = await deleteEntry(id, token);
@@ -29,6 +39,17 @@ function DiaryEntryCard({id, title, location, temperature, condition,content, cr
             content: contentEdit,
             location: locationEdit,
          };
+
+         const errors = noEmptyFields(updatedEntry);
+         if(errors.length === 1) {
+            alert(`Please fill out the ${errors.join(", ")} field`);
+            return;
+         }
+         if(errors.length > 1) {
+            alert(`Please fill out the ${errors.join(", ")} fields`);
+            return;
+         }
+
          const response = await updateEntry(id, updatedEntry, token);
          // console.log("Entry updated:", response);
 
