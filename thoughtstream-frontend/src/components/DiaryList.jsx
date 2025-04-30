@@ -53,7 +53,7 @@ function DiaryList(updateEntry){
             />
           ))
         ) : (
-          <p>No diary entries found.</p>
+          <p className="diaryList-Notification">No diary entries found</p>
         )}
       </div>
    );
