@@ -81,6 +81,7 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
       {EditMode ? (
          <div className="edit-content">
             <div className="edit-location-div">
+               <p className="input-title">Title:</p>
                <input
                className="title-input"
                type="text"
@@ -90,6 +91,7 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
             </div>
 
             <div className="edit-location-div">
+               <p className="input-title">Content:</p>
                <textarea
                className="location-input"
                value={contentEdit}
@@ -98,6 +100,7 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
             </div>
 
             <div className="edit-location-div">
+               <p className="input-title">Locaton:</p>
                <textarea
                className="location-input"
                value={locationEdit}
@@ -106,6 +109,7 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
             </div>
 
             <div className="edit-location-div">
+               <p className="input-title">Reflection:</p>
                <textarea
                className="location-input"
                value={reflectionEdit}
