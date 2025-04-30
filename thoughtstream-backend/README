@@ -1,0 +1,45 @@
+Setup Instructions:
+(Have node installed)
+(Setup all enviromental variables in a .env file)
+npm install
+npm start
+
+# API Usage Guide:
+Get /
+Responses:
+   Success (200): "Welcome to ThoughtStream API"
+   Error (500): "Server Error"
+
+GET /api/diary/
+Responses:
+   Success (200): Returns all diary entries
+   Error (500): "Server Error: Unable to fetch diary entries"
+   Error (401): "Unauthorized, update your cookie!"
+   Error (500): "Error in authentication middleware"
+
+GET /api/diary/:id
+Responses:
+   Success (200): Returns that specific diary
+   Error (404): "Diary entry not found"
+   Error (400): "Server Error: Unable to retrieve diary entry"
+   Error (401): "Unauthorized, update your cookie!"
+   Error (500): "Error in authentication middleware"
+
+POST /api/diary
+Responses:
+   Success (200): The updated diary
+   Error (404): "Diary entry not found"
+   Error (500): "Server Error: Unable to update diary entry"
+   Error (401): "Unauthorized, update your cookie!"
+   Error (500): "Error in authentication middleware"
+
+DELETE /api/diary/:id
+Responses:
+   Success (200): "Diary entry id deleted successfully"
+   Error (404): "Diary entry id not found"
+   Error (500): "Server Error: Unable to delete diary entry"
+   Error (401): "Unauthorized, update your cookie!"
+   Error (500): "Error in authentication middleware"
+
+Git Commit History
+in ./photos/
