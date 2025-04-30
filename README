@@ -1,13 +1,102 @@
+Group Members: David Bratkov, Adem Osmancevic
+
 How to start the project: 
+    - Get to thoughtstream-backend/frontend directories
+    - Run 'npm install' 
+    - run 'npm start'  for backend, then do the same for frontend
+    - visit http://localhost:5173/ and sign in through google
+    - Interact with the diary app; save entries, update, delete.
 
 
+Screenshots in ./thoughtstream-backend/photos
 
-
-• Include screenshots of the working UI and token handling in developer tools
-• Document your component structure and routing
-• Explain how JWT is stored and used
-• Be sure your frontend only works when the backend is running
 
 How JWT is stored:
+    The JWT is stored with React in thoughtstream-frontend/src/context/AuthContext.js after a successful login. It's saved in localStorage 'localStorage.setItem("jwt", jwt)'.
 
 How JWT is used:
+    The JWT token is sent through the Authorization header through all api requests to communicate with the backend. It's used to ensure the user has permission to fetch, save, delete, and update diaries. If the token is missing the backend will return a error.
+
+
+Component Structures:
+
+Frontend:
+    thoughtstream-frontend/
+├── public/
+│ └── index.html # Vite entry HTML
+├── src/
+│ ├── components/ # UI components
+│ │ ├── Header.jsx # Site header with nav, maybe logout
+│ │ ├── WeatherWidget.jsx # User’s location and current weather
+│ │ ├── LoginButton.jsx # Button to trigger login
+│ │ ├── LoginSuccess.jsx
+│ │ ├── DiaryEntryCard.jsx # Renders a single diary entry
+│ │ ├── DiaryList.jsx # Lists all diary entries for a user
+│ │ └── NewEntryForm.jsx # Form to add a new diary entry
+│ ├── context/ # For shared context, e.g., auth
+│ │ └── AuthContext.jsx
+│ ├── pages/ # For route-based components
+│ │ ├── Dashboard.jsx # Main authenticated page
+│ │ └── Login.jsx # Landing/login screen
+│ ├── services/ # Axios setup and API call helpers
+│ │ └── api.js # Functions to call backend API (CRUD + login)
+│ ├── utils/
+│ │ └── auth.js # Utility for handling JWT (storage, headers)
+│ ├── App.jsx # Root component with routing
+│ ├── main.jsx # Entry point for Vite + React
+│ └── styles/
+│ └── index.css # Global styles
+├── .env
+├── .env.example # VITE_API_BASE_URL, etc.
+├── .gitignore
+├── vite.config.js # Vite configuration
+└── package.json
+
+Backend:
+thoughtstream-backend/
+│ 
+├── config/
+│ ├──db
+├── controllers/ # Application logic (handles API requests)
+│ ├── authController.js # Handles Google login, ID Token verification, JWT issuance
+│ ├── diaryController.js # CRUD operations for diary entries
+│ └── weatherController.js # (Optional) Handles weather API
+│
+├── models/ # Mongoose schemas (MongoDB collections)
+│ ├── User.js # User schema (Google ID, name, email, etc.)
+│ └── DiaryEntry.js # Diary Entry schema (title, content, weather, owner)
+│
+├── routes/ # API route definitions
+│ ├── authRoutes.js # Routes for login, logout
+│ ├── diaryRoutes.js # Routes for diary operations (protected routes)
+│ └── weatherRoutes.js # (Optional) Weather data fetch route
+│
+├── middleware/ # Custom middleware functions
+│ └── authMiddleware.js # Middleware to authenticate JWTs and attach user
+│
+├── config/ # Configuration files
+│ └── db.js # MongoDB connection setup
+│
+├── services/ # Service modules (for external API integrations)
+│ └── weatherService.js # (Optional) Helper to call weather API
+│
+├── utils/ # Utility functions (optional helpers)
+│ └── auth.js # Token management helpers (if needed)
+│
+├── public/ # Static files (e.g., images) if needed
+│
+├── postman/ # Saved Postman collections for API testing
+├── photos/
+│  ├── dashboard.png
+│  ├── dashboard2.png
+│  ├── dashboard3.png
+│  ├── git-history-1.png
+│  ├── git-history-2.png
+│  ├── login.png
+│   └── upadte.png
+│
+├── .env # Environment variables (e.g., API keys, secret, DB credentials)
+├── .env.example # Example .env file with placeholder values
+├── package.json # Project metadata and dependencies
+├── server.js # Main Express server entry point
+└── README # Project documentation
