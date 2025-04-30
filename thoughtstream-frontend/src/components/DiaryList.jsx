@@ -15,22 +15,19 @@ function DiaryList(updateEntry){
    const {token} = useContext(AuthContext);
    const navigate = useNavigate();
 
-   // console.log("Passed updateEntry function:", updateEntry);
-
    useEffect(() => {
       fetchEntries(token)
          .then((response) => {
-            //console.log("Fetched entries:", response);
             setEntries(response);
          })
          .catch((error) => {
             if (error) {
                if (error.message === "Request aborted") return;
                console.error("Error fetching entries:", error);
-               if (error.response.status === 403) {
-                  console.log("Token expired or invalid, redirecting to login");
-                  navigate("/");
-               }
+               // if (error.response.status === 403) {
+               //    console.log("Token expired or invalid, redirecting to login");
+               //    navigate("/");
+               // }
             }
          });
    }, [entries]);

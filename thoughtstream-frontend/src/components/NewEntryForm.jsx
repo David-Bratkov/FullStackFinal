@@ -101,7 +101,7 @@ function NewEntryForm({ onSubmit }) {
          <label className="input-location-text">
          Tags: 
          
-            <div className="tags-list">
+            <div className="tags-list1">
                {tags.map((tag, index) => (
                   <span
                   key={index}
@@ -118,7 +118,7 @@ function NewEntryForm({ onSubmit }) {
                placeholder="Enter a tag"
                className="location-input"
             />
-            <button onClick={handleAddTag} type="button">
+            <button onClick={handleAddTag} type="button" className="button1">
                Add
             </button>
          </label>

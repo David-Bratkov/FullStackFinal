@@ -51,23 +51,9 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: white;
 }
-
-.location-title{
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-    background-color: white ;
-}
   
-.condition-title{
+.condition-title, .temp-title, .location-title{
     font-size:  2rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-    background-color: white;
-}
-
-.temp-title{
-    font-size: 2rem;
     margin-bottom: 1.5rem;
     color: #333;
     background-color: white;
@@ -116,7 +102,10 @@ button:hover{
     background-color: #4e65af; 
 }
 
-
+.button1     {
+    margin-top: 0.6rem;
+}
+  
 .new-entry-form {
     display: flex;
     flex-direction: column;
@@ -129,7 +118,7 @@ button:hover{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);  
 }
 
-.title-text, .location-text,.content-text{
+.title-text, .location-text, .content-text{
     font-size: 2rem;
     padding:1.5rem;
     background-color: white;
@@ -188,7 +177,7 @@ button:hover{
     border-radius: 1rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
   
@@ -267,6 +256,13 @@ button:hover{
     flex-wrap: wrap;
     gap: 0.5rem;
     background-color: #e6f0ff;
+}
+.tags-list1 {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background-color: white;
 }
 .tag-item {
     background-color: #dfe7fd;
