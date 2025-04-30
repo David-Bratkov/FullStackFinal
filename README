@@ -45,12 +45,12 @@ Frontend:
 │ ├── App.jsx # Root component with routing
 │ ├── main.jsx # Entry point for Vite + React
 │ └── styles/
-│ └── index.css # Global styles
-├── .env
-├── .env.example # VITE_API_BASE_URL, etc.
-├── .gitignore
+│   └── index.css # Global styles
+├── .env # Environment variables (e.g., API base URL)
+├── .env.example # Example fields to show how the .env should be structured
+├── .gitignore # Files to ignore in git
 ├── vite.config.js # Vite configuration
-└── package.json
+└── package.json # Project metadata and dependencies
 
 Backend:
 thoughtstream-backend/
