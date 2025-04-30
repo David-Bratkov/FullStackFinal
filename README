@@ -56,7 +56,7 @@ Backend:
 thoughtstream-backend/
 │ 
 ├── config/
-│ ├──db
+│ ├──db #Connection to the MongoDB database
 ├── controllers/ # Application logic (handles API requests)
 │ ├── authController.js # Handles Google login, ID Token verification, JWT issuance
 │ ├── diaryController.js # CRUD operations for diary entries
@@ -86,14 +86,14 @@ thoughtstream-backend/
 ├── public/ # Static files (e.g., images) if needed
 │
 ├── postman/ # Saved Postman collections for API testing
-├── photos/
+├── photos/ # Screenshots of the application and Github history 
 │  ├── dashboard.png
 │  ├── dashboard2.png
 │  ├── dashboard3.png
 │  ├── git-history-1.png
 │  ├── git-history-2.png
 │  ├── login.png
-│   └── upadte.png
+│  └── update.png
 │
 ├── .env # Environment variables (e.g., API keys, secret, DB credentials)
 ├── .env.example # Example .env file with placeholder values

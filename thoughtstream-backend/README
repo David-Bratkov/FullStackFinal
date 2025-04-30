@@ -1,4 +1,4 @@
-Setup Instructions:
+# Setup Instructions:
 (Have node installed)
 (Setup all enviromental variables in a .env file)
 npm install
