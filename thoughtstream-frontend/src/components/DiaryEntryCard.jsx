@@ -153,10 +153,10 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
             <p className="card-content">{content}</p>
             <p className="card-created">Created on: {new Date(creation).toLocaleDateString()}</p>
             {weather && (
-            <div>
-               <p>Condition: {weather.condition}</p>
-               <p>Temperature: {weather.temperature}°C</p>
-               <p>Location: {weather.location}</p>
+            <div className="weather-text">
+               <p className="weather-condition">Condition: {weather.condition}</p>
+               <p className="weather-condition">Temperature: {weather.temperature}°C</p>
+               <p className="weather-condition">Location: {weather.location}</p>
             </div>
             )}
             {reflection && <p className="card-reflection">{reflection}</p>}
