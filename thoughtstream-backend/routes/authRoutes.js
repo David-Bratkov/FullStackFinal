@@ -2,6 +2,8 @@
 // Defines authentication routes for the ThoughtStream app using Google OAuth2 via Passport.js
 import express from "express";
 import { handleGoogleLogin } from "../controllers/authController.js";
+import bcrypt from "bcrypt";
+import User from "../models/User.js";
 
 
 // Create a new Express router instance
@@ -74,6 +76,98 @@ router.get("/logout", (req, res) => {
 */
 router.get("/failure", (req, res) => {
     res.status(401).send("Login failed");
+});
+
+/**
+ * @route   POST /api/auth/register
+ * @desc    Checks to see if the user email is already registered and if not, creates a new user
+ * @access  Public
+ */
+router.post("/register", async (req, res) => {
+    const { email, password } = req.body;
+  
+    // Validate input
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Email and password are required" });
+    }
+  
+    try {
+       const existingUser = await User.findOne({ email });
+
+        // console.log("DEBUG existingUser:", existingUser);
+
+        //hash the password for more security
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        if (existingUser) {
+
+            console.log("DEBUG existingUser Pass:", existingUser.password);
+
+            if (typeof existingUser.password !== undefined) {
+                return res.status(409).json({ success: false, message: "Email already registered" });
+            }
+
+            const hashedPassword = await bcrypt.hash(password, 10);
+
+            const updatedUser = {
+                ...existingUser,
+                password: hashedPassword,
+            }
+
+            const result = await User.findByIdAndUpdate(existingUser._id, updatedUser, { new: true });
+
+            console.log("DEBUG updatedUser:", result);
+            return res.status(200).json({ success: true, message: "Account updated successfully" });
+        }
+        else {
+
+
+            const newUser = new User({
+                email,
+                password: hashedPassword,
+            });
+        
+            const result = await newUser.updateOne();
+
+            console.log("DEBUG newUser:", result);
+        
+            return res.status(201).json({ success: true, message: "Account registered successfully" }); // 201 Created
+        }
+ 
+    } catch (error) {
+      console.error("Error in /register route:", error);
+      return res.status(500).json({ success: false, message: "Internal server error" }); // 500 Internal Server Error
+    }
+});
+
+router.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ success: false, message: "Email and password are required" });
+    }
+
+    try {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(401).json({ success: false, message: "Invalid email or password" });
+        }
+
+        //compare the encrypted password with the user password
+        const isMatch = bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return res.status(401).json({ success: false, message: "Invalid email or password" });
+        }
+
+        //add logic to connect the user to the JWT authentication
+
+        return res.status(200).json({ success: true, message: "Login successful", userId: user._id });
+    } catch (error) {
+        console.error("Error in /login route:", error);
+        return res.status(500).json({ success: false, message: "Internal server error" });
+    }
 });
 
 export default router;

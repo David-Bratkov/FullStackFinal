@@ -121,6 +121,24 @@ export async function deleteEntry(entryId, token) {
    }
 }
 
+export async function registerUser(userData) {
+   try {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, userData);
+      return res.data;
+   } catch (err) {
+      throw err;
+   }
+}
+
+export async function loginUser(userData) {
+   try {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/auth/login`, userData);
+      return res.data;
+   } catch (err) {
+      throw err;
+   }
+}
+
 /**
 * Export the configured Axios instance
 *

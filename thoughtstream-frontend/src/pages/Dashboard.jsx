@@ -2,7 +2,6 @@ import Header from "../components/Header";
 import WeatherWidget from "../components/WeatherWidget";
 import DiaryList from "../components/DiaryList";
 import NewEntryForm from "../components/NewEntryForm";
-import DiaryEntryInput from "../components/DiaryEntryInput";
 import { AuthContext } from "../context/AuthContext";
 import { useContext, useState, useEffect } from "react";
 import { createEntry, fetchEntries } from "../services/api";
