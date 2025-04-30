@@ -77,19 +77,19 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
       }
    }
    return(
-   <div>
+   <div className="main-edit">
       {EditMode ? (
-         <div>
-            <div>
+         <div className="edit-content">
+            <div className="edit-location-div">
                <input
-               className="location-input"
+               className="title-input"
                type="text"
                value={titleEdit}
                onChange={(e) => settitleEdit(e.target.value)}
                />
             </div>
 
-            <div>
+            <div className="edit-location-div">
                <textarea
                className="location-input"
                value={contentEdit}
@@ -97,7 +97,7 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
                />
             </div>
 
-            <div>
+            <div className="edit-location-div">
                <textarea
                className="location-input"
                value={locationEdit}
@@ -105,7 +105,7 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
                />
             </div>
 
-            <div>
+            <div className="edit-location-div">
                <textarea
                className="location-input"
                value={reflectionEdit}
@@ -117,22 +117,22 @@ function DiaryEntryCard({id, title, location, reflection, content, creation, wea
                <label className="input-location-text">
                Tags: 
                
-                  <div className="tags-list">
+                  <div className="edit-tags-list">
                      {tagsEdit.map((tag, index) => (
                         <span
                         key={index}
-                        className="tag-item"
+                        className="edit-tag-item"
                         onClick={() => handleRemoveTag(tag)}
                         >
                         {tag} &times;
                         </span>
                      ))}
                   </div>
-                  <input
+                  <input 
                      value={tagInput}
                      onChange={(e) => setTagInput(e.target.value)}
                      placeholder="Enter a tag and press Add"
-                     className="location-input"
+                     className="edit-tag-input"
                   />
                   <button onClick={handleAddTag} type="button">
                      Add
